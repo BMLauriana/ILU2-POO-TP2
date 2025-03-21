@@ -31,7 +31,6 @@ public class ControlAcheterProduit {
 		String[] nomVendeurs = new String[vendeurs.length];
 		for(int i=0;i<vendeurs.length;i++) {
 			int numeroProposition = i+1;
-			System.out.println(numeroProposition+"- "+vendeurs[i].getNom());
 			nomVendeurs[i] = vendeurs[i].getNom();
 		}
 		return nomVendeurs;
@@ -43,9 +42,8 @@ public class ControlAcheterProduit {
 		if(quantiteEtal==0) {
 			return 0;
 		}else if(quantiteEtal<quantite) {
-			int quantiteAchetee = quantite - quantiteEtal;
-			etalVendeur.acheterProduit(quantiteAchetee);
-			return quantiteAchetee;
+			etalVendeur.acheterProduit(quantiteEtal);
+			return quantiteEtal;
 		}else {
 			etalVendeur.acheterProduit(quantite);
 			return quantite;

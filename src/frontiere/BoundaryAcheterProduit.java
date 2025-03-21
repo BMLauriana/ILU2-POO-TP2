@@ -16,6 +16,11 @@ public class BoundaryAcheterProduit {
 		}else {
 			String produitAcheter = Clavier.entrerChaine("Quel produit voulez vous acheter ?");
 			String [] propositionVendeurs = controlAcheterProduit.propositionVendeur(produitAcheter);
+//			Affichage propositions
+			for(int i=0;i<propositionVendeurs.length;i++) {
+				int numeroProposition = i+1;
+				System.out.println(numeroProposition+"- "+propositionVendeurs[i]);
+			}
 			int choixVendeur = Clavier.entrerEntier("Chez quel commercant voulez vous acheter des "+produitAcheter+"?");
 			while(choixVendeur < 1 || choixVendeur > propositionVendeurs.length) {
 				System.out.println("Ce numero n'est pas propose\n");
@@ -26,11 +31,11 @@ public class BoundaryAcheterProduit {
 			int quantite = Clavier.entrerEntier("Bonjour "+nomAcheteur+"\nCombien de "+produitAcheter+" voulez-vous acheter ?\n");
 			int resultatAchat = controlAcheterProduit.acheterProduit(nomVendeur,quantite);
 			if(resultatAchat==0) {
-				System.out.println(nomAcheteur+" veut acheter "+quantite+" "+produitAcheter+", malheureusement il n'y en a plu!\n");
+				System.out.println(nomAcheteur+" veut acheter "+quantite+" "+produitAcheter+", malheureusement il n'y en a plus!\n");
 			}else if(resultatAchat==quantite) {
-				System.out.println(nomAcheteur+" achete "+quantite+" a "+nomVendeur+".\n"); 
-			}else {
-				System.out.println(nomAcheteur+" veut acheter "+quantite+" "+produitAcheter+"malheureusement, "+nomVendeur+ " n'en a plus que "+produitAcheter+". "+nomAcheteur+ "achete tout le stock de "+nomVendeur);
+				System.out.println(nomAcheteur+" achete "+quantite+" "+produitAcheter+" a "+nomVendeur+".\n"); 
+			}else if(resultatAchat<quantite) {
+				System.out.println(nomAcheteur+" veut acheter "+quantite+" "+produitAcheter+" malheureusement, "+nomVendeur+ " n'en a plus que "+resultatAchat+". "+nomAcheteur+ " achete tout le stock de "+nomVendeur);
 			}
 		}
 	}
